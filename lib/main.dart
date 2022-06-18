@@ -40,8 +40,32 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     body: Container(
-      alignment: Alignment.center,
-      child: Text('Hello World ! '),
+      color: Colors.black,
+      child: Stack(
+        children: [
+          Positioned.fill(
+              child: Opacity(
+                opacity: 0.6,
+                child: Image.asset('assets/imgs/front-view-black-wine-bottle-red-wine-glass-cheese-cut-lemon-pieces-dark-chocolate-wooden-boards-dried-flower-branch-red-table.jpg', fit: BoxFit.cover,
+                ),
+              )
+          ),
+          Center(
+            child: Column(
+              children: [
+                ClipOval(
+                  child: Container(
+                    height: 180,
+                    width: 180,
+                    color: const Color(0xFFFF6363),
+                    alignment: Alignment.center,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     ),
     );
 
