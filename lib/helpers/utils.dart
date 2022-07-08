@@ -1,10 +1,28 @@
 import 'package:winy/helpers/appcolors.dart';
 import 'package:winy/models/categorypart.dart';
+import 'package:winy/models/onboardingcontent.dart';
 import 'package:winy/models/subcategory.dart';
 
 import '../models/category.dart';
 
 class Utils {
+  static List<OnBoardingContent> getOnboarding() {
+    return [
+      OnBoardingContent(
+          message:
+              'Un vin de plaisir à savourer dans les deux ou trois ans en accompagnant des gésiers à la sauce provençale, du bœuf aux noix de cajou, des cailles au nid ou une viande farcie au fromage.',
+          imgName: ''),
+      OnBoardingContent(
+          message:
+              'Savourez le whisky que vous désirez, faites vous plaisir !.',
+          imgName: ''),
+      OnBoardingContent(
+          message:
+              'Obtenez-les dans le confort de votre appareil mobile.',
+          imgName: ''),
+    ];
+  }
+
   static List<Category> getMockedCategories() {
     return [
       Category(
@@ -19,9 +37,16 @@ class Utils {
                 color: AppColors.Vin_Rouge_Color,
                 imgName: 'details_page_vinrouge',
                 parts: [
-                  CategoryPart(name: "Magon", imgName: "magon", isSelected: false),
-                  CategoryPart(name: "Magon Chateaux", imgName: "magon", isSelected: false),
-                  CategoryPart(name: "Vieux Magon", imgName: "vieux morgan", isSelected: false)
+                  CategoryPart(
+                      name: "Magon", imgName: "magon", isSelected: false),
+                  CategoryPart(
+                      name: "Magon Chateaux",
+                      imgName: "magon",
+                      isSelected: false),
+                  CategoryPart(
+                      name: "Vieux Magon",
+                      imgName: "vieux morgan",
+                      isSelected: false)
                 ]),
             SubCategory(
                 name: 'Mornag',
