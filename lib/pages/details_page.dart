@@ -3,9 +3,17 @@ import 'package:winy/helpers/appcolors.dart';
 import 'package:winy/models/subcategory.dart';
 import 'package:winy/widgets/category_icon.dart';
 import 'package:winy/widgets/main_app_bar.dart';
+import 'package:winy/widgets/theme_button.dart';
+
+import '../widgets/category_parts_list.dart';
+import '../widgets/unit_price_widget.dart';
 
 class DetailsPage extends StatefulWidget {
   SubCategory? subCategory;
+
+  int amount = 0;
+  double price = 15.0;
+  double cost = 0.0;
 
   DetailsPage({this.subCategory});
 
@@ -22,8 +30,8 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(50)),
+              borderRadius:
+                  const BorderRadius.only(bottomLeft: Radius.circular(50)),
               child: Stack(
                 children: [
                   Container(
@@ -31,8 +39,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage(
-                                'assets/imgs/${widget.subCategory
-                                    ?.imgName!}.jpeg'),
+                                'assets/imgs/${widget.subCategory?.imgName!}.jpeg'),
                             fit: BoxFit.cover)),
                   ),
                   Positioned.fill(
@@ -42,9 +49,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
                               colors: [
-                                Colors.black.withOpacity(0.6),
-                                Colors.transparent
-                              ])),
+                            Colors.black.withOpacity(0.6),
+                            Colors.transparent
+                          ])),
                     ),
                   ),
                   Positioned(
@@ -67,8 +74,8 @@ class _DetailsPageState extends State<DetailsPage> {
                             children: [
                               const Text(
                                 'Vin Rouge',
-                                style:
-                                TextStyle(fontSize: 20, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
                               ),
                               const SizedBox(height: 10),
                               Container(
@@ -101,19 +108,20 @@ class _DetailsPageState extends State<DetailsPage> {
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.5),
                                   blurRadius: 20,
-                                  offset: Offset.zero
-                              )
-                            ]
-                        ),
+                                  offset: Offset.zero)
+                            ]),
                         child: Row(
                           children: const [
                             Text(
                               '3',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 15),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
                             ),
-                            Icon(Icons.shopping_cart, color: Colors.white,
-                              size: 15,)
+                            Icon(
+                              Icons.shopping_cart,
+                              color: Colors.white,
+                              size: 15,
+                            )
                           ],
                         ),
                       )),
@@ -121,69 +129,24 @@ class _DetailsPageState extends State<DetailsPage> {
                 ],
               ),
             ),
-            Expanded(child: Container(
+            Expanded(
+                child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-                    child: Text('Selectionnez votre bouteille'),
+                  CategoryPartsList(
+                    subCategory: widget.subCategory
                   ),
-                  Container(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.subCategory?.parts.length,
-                        itemBuilder: (BuildContext context, int index){
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                widget.subCategory?.parts.forEach((element) {
-                                  element.isSelected = widget.subCategory?.parts[index] == element;
-                                });
-                              });
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.all(15),
-                                  width: 120,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    border: widget.subCategory!.parts[index].isSelected as bool  ? Border.all(
-                                      color: widget.subCategory?.color as Color, width: 7
-                                    ) : null,
-                                    borderRadius: BorderRadius.circular(25),
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/imgs/${widget.subCategory?.parts[index].imgName}.jpeg',
-                                      ),fit: BoxFit.cover
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        offset: Offset.zero,
-                                        blurRadius: 10
-                                      )
-                                    ]
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(left: 25),
-                                  child: Text(
-                                      widget.subCategory?.parts[index].name as String
-                                  , textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: widget.subCategory?.color
-                                  ),),
-
-                                )
-                              ],
-                            ),
-                          );
-                        },
-
-                    ),
+                  UnitPriceWidget(),
+                  ThemeButton(onClick: () {},
+                  label: 'Ajouter au panier',
+                  icon: const Icon(Icons.shopping_cart,color: Colors.white,),
+                  ),
+                  ThemeButton(onClick: () {},
+                  color: AppColors.DARK_GREEN,
+                  highlight: AppColors.DARKER_GREEN,
+                  icon: const Icon(Icons.location_pin,color: Colors.white,),
+                  label: 'Emplacement du produit',
                   )
                 ],
               ),

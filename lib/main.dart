@@ -10,7 +10,7 @@ void main() {
   runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Raleway'),
     debugShowCheckedModeBanner: false,
-    home: DetailsPage(subCategory: Utils.getMockedCategories()[0].subCategories![0] as SubCategory,)//SplashPage(duration: 3, goToPage: const WelcomePage(),)
+    home: SplashPage(duration: 3, goToPage: const WelcomePage(),)
   ));
 }
 

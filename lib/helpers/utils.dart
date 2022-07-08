@@ -17,7 +17,7 @@ class Utils {
                 name: 'Magon',
                 icon: 'assets/icons/Image 71.png',
                 color: AppColors.Vin_Rouge_Color,
-                imgName: 'magon',
+                imgName: 'details_page_vinrouge',
                 parts: [
                   CategoryPart(name: "Magon", imgName: "magon", isSelected: false),
                   CategoryPart(name: "Magon Chateaux", imgName: "magon", isSelected: false),
@@ -27,7 +27,7 @@ class Utils {
                 name: 'Mornag',
                 icon: 'assets/icons/Image 71.png',
                 color: AppColors.Vin_Rouge_Color,
-                imgName: 'mornag',
+                imgName: 'details_page_vinrouge',
                 parts: [
                   CategoryPart(name: "", imgName: "", isSelected: false)
                 ]),
