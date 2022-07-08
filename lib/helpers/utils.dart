@@ -10,16 +10,16 @@ class Utils {
     return [
       OnBoardingContent(
           message:
-              'Un vin de plaisir à savourer dans les deux ou trois ans en accompagnant des gésiers à la sauce provençale, du bœuf aux noix de cajou, des cailles au nid ou une viande farcie au fromage.',
-          imgName: ''),
+              'Un vin de plaisir à savourer en accompagnant des gésiers à la sauce provençale, du bœuf aux noix de cajou, des cailles au nid ou une viande farcie au fromage.',
+          imgName: 'onboard1'),
       OnBoardingContent(
           message:
               'Savourez le whisky que vous désirez, faites vous plaisir !.',
-          imgName: ''),
+          imgName: 'onboard2@3x'),
       OnBoardingContent(
           message:
               'Obtenez-les dans le confort de votre appareil mobile.',
-          imgName: ''),
+          imgName: 'onboard3@3x'),
     ];
   }
 
