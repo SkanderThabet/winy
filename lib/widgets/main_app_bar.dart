@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../helpers/appcolors.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
-
   Color themeColor;
-  MainAppBar ({this.themeColor = AppColors.Main_Color});
+  MainAppBar({this.themeColor = AppColors.Main_Color});
 
   @override
   State<MainAppBar> createState() => _MainAppBarState();

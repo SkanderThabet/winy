@@ -13,7 +13,7 @@ class AppColors {
   static const Color HIGHTLIGHT_GREEN = Color(0xFF5A8E12);
   static const Color HIGHTLIGHT_DEFAULT = Color(0xFFD70023);
   static const Color LIGHTER_GREEN = Color(0xFFC1E09E);
-  static const Color OnboardConvex = Color(0x4DFF2843);
+  static const Color OnboardConvex = Color(0xFFFF92A7);
 
 
 

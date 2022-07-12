@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winy/helpers/appcolors.dart';
+import 'package:winy/pages/category_list_page.dart';
 import 'package:winy/widgets/main_app_bar.dart';
 import 'package:winy/widgets/theme_button.dart';
 
@@ -13,6 +14,20 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   List<OnBoardingContent> _content = Utils.getOnboarding();
+  int pageIndex = 0;
+  PageController? _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +38,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               Expanded(
                 child: PageView(
+                  controller: _controller,
+                  onPageChanged: (int page) {
+                    setState(() {
+                      pageIndex = page;
+                    });
+                  },
                   children: [
                     ...List.generate(
                       _content.length,
@@ -70,7 +91,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             Visibility(
                               visible: index == _content.length - 1,
                               child: ThemeButton(
-                                onClick: () {},
+                                onClick: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CategoryListPage()));
+                                },
                                 label: 'Entrez maintenant!',
                                 color: AppColors.Main_Color,
                                 highlight: AppColors.Vin_Rouge_Color,
@@ -86,25 +113,41 @@ class _OnboardingPageState extends State<OnboardingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...List.generate(_content.length, (index) => Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: AppColors.Main_Color,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                        width: 6,
-                        color: index == 0 ? AppColors.Vin_Rouge_Color : Theme.of(context).canvasColor
-
-                      )
-                    ),
-                    margin: const EdgeInsets.all(10),
-                  ))
+                  ...List.generate(
+                      _content.length,
+                      (index) => GestureDetector(
+                            onTap: () {
+                              _controller?.animateTo(
+                                  MediaQuery.of(context).size.width * index,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                            },
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                  color: AppColors.Main_Color,
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                      width: 6,
+                                      color: pageIndex == index
+                                          ? AppColors.OnboardConvex
+                                          : Theme.of(context).canvasColor)),
+                              margin: const EdgeInsets.all(10),
+                            ),
+                          ))
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               ThemeButton(
-                onClick: () {},
+                onClick: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CategoryListPage()));
+                },
                 label: 'Skip Onboard!',
                 color: AppColors.Main_Color,
                 highlight: AppColors.Vin_Rouge_Color,
